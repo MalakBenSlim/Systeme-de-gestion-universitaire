@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+    <!-- Types simples avec restrictions -->
+    <xs:simpleType name="NoteType">
+        <xs:restriction base="xs:decimal">
+            <xs:minInclusive value="0"/>
+            <xs:maxInclusive value="20"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="CoefficientType">
+        <xs:restriction base="xs:decimal">
+            <xs:minExclusive value="0"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="NiveauType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="LSI1"/>
+            <xs:enumeration value="LSI2"/>
+            <xs:enumeration value="LSI3"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="TexteNonVide">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- Entités -->
+    <xs:complexType name="EtudiantType">
+        <xs:sequence>
+            <xs:element name="nom" type="TexteNonVide"/>
+            <xs:element name="prenom" type="TexteNonVide"/>
+            <xs:element name="niveau" type="NiveauType"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="xs:ID" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="EnseignantType">
+        <xs:sequence>
+            <xs:element name="nom" type="TexteNonVide"/>
+            <xs:element name="specialite" type="TexteNonVide"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="xs:ID" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="MatiereType">
+        <xs:sequence>
+            <xs:element name="nom" type="TexteNonVide"/>
+            <xs:element name="coefficient" type="CoefficientType"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="xs:ID" use="required"/>
+        <xs:attribute name="enseignant" type="xs:IDREF" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="NoteElementType">
+        <xs:attribute name="etudiant" type="xs:IDREF" use="required"/>
+        <xs:attribute name="matiere" type="xs:IDREF" use="required"/>
+        <xs:attribute name="valeur" type="NoteType" use="required"/>
+    </xs:complexType>
+
+    <!-- Élément racine -->
+    <xs:element name="universite">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="etudiants">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="etudiant" type="EtudiantType" minOccurs="1" maxOccurs="unbounded"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="enseignants">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="enseignant" type="EnseignantType" minOccurs="1" maxOccurs="unbounded"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="matieres">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="matiere" type="MatiereType" minOccurs="1" maxOccurs="unbounded"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="notes">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="note" type="NoteElementType" minOccurs="0" maxOccurs="unbounded"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

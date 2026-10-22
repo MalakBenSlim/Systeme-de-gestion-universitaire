@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<universite>
+    <etudiants>
+        <etudiant id="E1">
+            <nom>Ben Salah</nom>
+            <prenom>Ahmed</prenom>
+            <niveau>LSI3</niveau>
+        </etudiant>
+        <etudiant id="E2">
+            <nom>Trabelsi</nom>
+            <prenom>Meriem</prenom>
+            <niveau>LSI3</niveau>
+        </etudiant>
+        <etudiant id="E3">
+            <nom>Gharbi</nom>
+            <prenom>Youssef</prenom>
+            <niveau>LSI2</niveau>
+        </etudiant>
+        <etudiant id="E4">
+            <nom>Mansour</nom>
+            <prenom>Sarra</prenom>
+            <niveau>LSI3</niveau>
+        </etudiant>
+    </etudiants>
+    <enseignants>
+        <enseignant id="ENS1">
+            <nom>Karray</nom>
+            <specialite>Réseaux</specialite>
+        </enseignant>
+        <enseignant id="ENS2">
+            <nom>Jlassi</nom>
+            <specialite>Architecture logicielle</specialite>
+        </enseignant>
+        <enseignant id="ENS3">
+            <nom>Chaabane</nom>
+            <specialite>Bases de données</specialite>
+        </enseignant>
+    </enseignants>
+    <matieres>
+        <matiere id="M1" enseignant="ENS2">
+            <nom>Architecture SOA et services web</nom>
+            <coefficient>-3</coefficient>
+        </matiere>
+        <matiere id="M2" enseignant="ENS3">
+            <nom>Bases de données</nom>
+            <coefficient>2</coefficient>
+        </matiere>
+        <matiere id="M3" enseignant="ENS1">
+            <nom>Réseaux</nom>
+            <coefficient>1.5</coefficient>
+        </matiere>
+        <matiere id="M4" enseignant="ENS2">
+            <nom>Programmation Java</nom>
+            <coefficient>2</coefficient>
+        </matiere>
+    </matieres>
+    <notes>
+        <note etudiant="E1" matiere="M1" valeur="25"/>
+        <note etudiant="E1" matiere="M2" valeur="12"/>
+        <note etudiant="E2" matiere="M1" valeur="14"/>
+        <note etudiant="E2" matiere="M4" valeur="18"/>
+        <note etudiant="E3" matiere="M3" valeur="9.5"/>
+        <note etudiant="E4" matiere="M9" valeur="15"/>
+        <note etudiant="E4" matiere="M4" valeur="11"/>
+    </notes>
+</universite>
